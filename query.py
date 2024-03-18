@@ -8,6 +8,7 @@ class Menu:
         print("Menu:")
         print("1. List all the movie names")
         print("2. Search movies by names")
+        print("3. Search movies by cast")
         print("q. Quit")
 
     def run(self):
@@ -21,6 +22,8 @@ class Menu:
                 self.list_all_movie_names()
             elif option == '2':
                 self.search_movies_by_names()
+            elif option == '3':
+                self.search_movies_by_cast()
             else:
                 print("Invalid option. Please try again.")
 
@@ -39,6 +42,19 @@ class Menu:
                 print(movie['name'])
         else:
             print("No movies found with that keyword.")
+
+    def search_movies_by_cast(self):
+        keyword = input("Enter a keyword to search for cast members: ")
+        results = self.movies.search_movies_by_cast(keyword)
+
+        if results:
+            print("Movies found:")
+            for result in results:
+                movie_name = result['name']
+                cast_list = result['cast']
+                print(f"{movie_name}\n[{', '.join([actor for actor in cast_list if keyword.lower() in actor.lower()])}]")
+        else:
+            print("No movies found with that cast member.")
 
 if __name__ == "__main__":
     menu = Menu('./movies.txt')
