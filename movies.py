@@ -28,6 +28,12 @@ class Movies:
                     'cast': movie_cast
                 }
             )
+    def get_all_movies(self):
+
+        return self._movies
+
 
 if __name__ == "__main__":
     movies = Movies('./movies.txt')
+
+    
