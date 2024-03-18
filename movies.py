@@ -32,6 +32,14 @@ class Movies:
 
         return self._movies
 
+    def search_movies_by_name(self, keyword):
+        keyword = keyword.lower()  # Convert keyword to lowercase for case-insensitive search
+        found_movies = []
+        for movie in self._movies:
+            if keyword in movie['name'].lower():
+                found_movies.append(movie)
+        return found_movies
+
 
 if __name__ == "__main__":
     movies = Movies('./movies.txt')
